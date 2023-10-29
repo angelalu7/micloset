@@ -1,0 +1,331 @@
+/* Reset default margin and padding for various elements */
+h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+/* Global styling for the entire page */
+body {
+  font-family: "Major Mono Display", monospace;  
+  background-color: #fbeded;
+}
+
+/* Header styling */
+header {
+  background-color: #a78181;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  max-width: 100%;
+}
+
+/* Styles for the heading section */
+#heading {
+  padding-top: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* Styles for the header title */
+.header-title {
+  margin: 0;
+}
+
+/* My Outfits button styling */
+.my-closet {
+  border: 1px;
+  border-radius: 3px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #8c5454;
+  text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: .2rem;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.my-closet:hover {
+  background-color: #6d3b3b;
+}
+
+/* Help button styling */
+.help-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #e4e3e3;
+  font-size: 14px;
+  border: solid #e4e3e3;
+  cursor: pointer;
+}
+
+/* Main content styling */
+main {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  display: flex; /* Add Flexbox to main */
+  flex-direction: column; /* Stack children vertically on small screens */
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% of the viewport height for vertical centering */
+}
+
+/* Define color variables */
+:root {
+  --pink: #a78181;
+  --light-blue: #B6DBF6;
+  --dark-pink: #8c5454;
+  --grey: #f2f2f2;
+}
+
+/* Virtual dress-up section styling */
+#virtual-dress-up {
+  display: flex;
+  justify-content: space-between;
+  height: 80vh;
+  z-index: 1;
+}
+
+/* Styles for the avatar section */
+#avatar {
+  width: auto;
+  height: 100%;
+  display: flex;
+  background-color: #fbeded;
+  position: relative;
+  padding-right: 60px;
+  box-sizing: border-box;
+}
+
+/* Styles for avatar images */
+#avatar img {
+  height: 100%;
+  display: flex;
+  /*display: none;*/
+}
+
+/* Styles for the clothing items section */
+#clothing-items {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 800px;
+  min-width: 380px;
+  width: 70vh;
+}
+
+/* Styles for individual clothing items */
+.clothing-item {
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 10px;
+  position: relative;
+  width: 800px;
+}
+
+/* Styles for images within clothing items */
+.clothing-item img {
+  max-width: 25%;
+  height: auto;
+}
+
+/* Styles for the add item button */
+.add-item-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border: 1px;
+  border-radius: 3px;
+  padding: 8px 20px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #a78181;
+  text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: .2rem;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.add-item-button:hover {
+  background-color: #8c5454;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  background-color: #a78181;
+  color: white;
+  padding: 10px 0;
+  /* position: fixed; Make the footer fixed */
+  bottom: 0; /* Position it at the bottom of the viewport */
+  width: 100%;
+}
+
+/* Styles for clothing categories */
+#clothing-nav {
+  padding-bottom: 10px;
+  max-width: 800px;
+  min-width: 380px;
+  width: 800px;
+}
+
+/* Styles for the clothing categories container */
+.clothing-categories {
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+/* Hide input elements */
+.clothing-categories input {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Styling for category labels */
+.clothing-categories label {
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  flex: 1 1 0px;
+  position: relative;
+  z-index: 2;
+  transition: inherit;
+}
+
+/* Style the last category label */
+.clothing-categories label:last-of-type {
+  z-index: 1;
+}
+
+/* Pseudo-element for category labels */
+.clothing-categories label:last-of-type::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -2;
+  background-color: black;
+  transition: inherit;
+}
+
+/* Styling for the category container */
+.clothing-categories {
+  border-radius: 0.5rem;
+  background: #e5dbe1;
+  height: 2rem;
+  padding: 0.125rem;
+}
+
+/* Style for category labels */
+.clothing-categories label {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Vertical separator lines between category labels */
+.clothing-categories label:not(:first-of-type)::before {
+  content: "";
+  position: absolute;
+  z-index: -3;
+  top: 0.5rem;
+  left: 0;
+  bottom: 0.5rem;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  transition: inherit;
+}
+
+/* Highlight selected category labels */
+.clothing-categories input:checked + label {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Hide pseudo-elements when input is checked */
+.clothing-categories input:checked + label::before,
+.clothing-categories input:checked + label + input + label::before {
+  opacity: 0;
+}
+
+/* Add focus styling for the entire category container */
+.clothing-categories:focus-within {
+  box-shadow: 0 0 0 .2rem hsl(0, 21%, 65%);
+}
+
+/* Pseudo-element styling for the last category label */
+.clothing-categories label:last-of-type::after {
+  background: white;
+  border-radius: 0.4275rem;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.04), 0px 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Translate the last category label based on input selection */
+.clothing-categories input:nth-last-of-type(2):checked ~ label:last-of-type::after {
+  transform: translateX(-100%);
+}
+
+/* Continue the translation for other input options */
+.clothing-categories input:nth-last-of-type(3):checked ~ label:last-of-type::after {
+  transform: translateX(-200%);
+}
+
+.clothing-categories input:nth-last-of-type(4):checked ~ label:last-of-type::after {
+  transform: translateX(-300%);
+}
+
+.clothing-categories input:nth-last-of-type(5):checked ~ label:last-of-type::after {
+  transform: translateX(-400%);
+}
+
+.clothing-categories input:nth-last-of-type(6):checked ~ label:last-of-type::after {
+  transform: translateX(-500%);
+}
+
+.clothing-categories input:nth-last-of-type(7):checked ~ label:last-of-type::after {
+  transform: translateX(-600%);
+}
+
+.clothing-categories input:nth-last-of-type(8):checked ~ label:last-of-type::after {
+  transform: translateX(-700%);
+}
+
+.clothing-categories input:nth-last-of-type(9):checked ~ label:last-of-type::after {
+  transform: translateX(-800%);
+}
