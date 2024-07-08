@@ -12,6 +12,8 @@ import CreateItemPopup from './create-item.popup';
 const AddItemPopup = ({ displayForm, onClose }) => {
   const [showCreateItemPopup, setShowCreateItemPopup] = useState(false);
   const [selectedImageURL, setSelectedImageURL] = useState(null);
+  const [isImageSelected, setIsImageSelected] = useState(false);
+
 
   const clearInfo = (event) => {
     const imgInput = document.querySelector('input[type="file"]');
@@ -22,6 +24,7 @@ const AddItemPopup = ({ displayForm, onClose }) => {
     closeImageButton.style.display = "none";
     const selectImage = document.querySelector('.select-image');
     selectImage.textContent = "Select Image";
+    setIsImageSelected(false);
     event.preventDefault();
   };
 
@@ -40,6 +43,7 @@ const AddItemPopup = ({ displayForm, onClose }) => {
   const inputFileChange = (event) => {
     const image = event.target.files[0];
     if (image.size < 2000000) {
+      setIsImageSelected(true);
       const reader = new FileReader();
       reader.onload = () => {
         const imgArea = document.querySelector('.img-area');
@@ -67,6 +71,7 @@ const AddItemPopup = ({ displayForm, onClose }) => {
   };
 
   const clearImage = (event) => {
+    setIsImageSelected(false);
     const imgInput = document.querySelector('input[type="file"]');
     imgInput.value = '';
     const imgArea = document.querySelector('.img-area');
@@ -92,9 +97,13 @@ const AddItemPopup = ({ displayForm, onClose }) => {
             <input type="file" id="file" accept="image/*" hidden onChange={inputFileChange} />
             <div className="img-area" data-img="">
               <button className="clear-img-thin" onClick={clearImage}></button>
-              <i className='bx bxs-cloud-upload icon'></i>
-              <h3>Upload Image</h3>
-              <p>Image size must be less than <span>2MB</span></p>
+              {isImageSelected ? null : (
+                <>
+                  <i className='bx bxs-cloud-upload icon'></i>
+                  <h3>Upload Image</h3>
+                  <p>Image size must be less than <span>2MB</span></p>
+                </>
+              )}
             </div>
             <button className="select-image" onClick={selectImageClick}>Select Image</button>
           </div>

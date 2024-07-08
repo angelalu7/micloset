@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../styles/HomePage.css'
-import Avatar from '../assets/avatar.png'
+import Avatar from '../assets/avatar_clothed.png'
 import AddItemPopup from '../components/dialogs/add-item.popup';
 
 function HomePage() {

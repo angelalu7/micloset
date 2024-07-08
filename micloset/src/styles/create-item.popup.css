@@ -1,8 +1,7 @@
-/* Styles for the form popup */
+/* styles for the create item popup */
 .create-form-popup {
     display: block;
     font-family: 'Montserrat', sans-serif;
-    justify-content: center;
     align-items: center;
     border: 3px solid #f1f1f1;
     position: absolute;
@@ -18,20 +17,11 @@
     max-width: 400px;
 }
   
-  /* Heading for image area */
   .create-form-popup h3 {
     font-size: 25px;
     font-weight: 500;
   }
   
-  /* Styles for the form container */
-  /* .form-container {
-    max-width: 400px;
-    padding: 5px;
-    background-color: white;
-  } */
-  
-  /* Container styles for images */
   .creation-container {
     max-width: 100%;
     /* width: 85%; */
@@ -40,13 +30,16 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: center;
     padding-bottom: 30px;
   }
 
+  .create-main {
+    display: flex;
+    justify-content: space-between;
+  }
+  
   .left-section {
     flex: 1;
-    padding: 0 20px; /* Add left padding for spacing */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,18 +47,18 @@
   }
   
   .right-section {
-    flex: 1;
-    padding: 0 20px; /* Add right padding for spacing */
+    flex: 1; 
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    justify-content: center; 
     align-items: center;
+    margin-left: 20px;
   }
-  
-  /* Styles for the image area */
+
   .img-preview {
     position: relative;
-    width: 100%;
-    height: 100px;
+    width: 20vh;
+    height: 20vh;
     background: var(--grey);
     margin-bottom: 20px;
     border-radius: 15px;
@@ -76,22 +69,18 @@
     flex-direction: column;
   }
   
-  /* Icon size */
   .img-preview .icon {
     font-size: 100px;
   }
   
-  /* Paragraph styling */
   .img-preview p {
     color: #999;
   }
   
-  /* Span styling */
   .img-preview p span {
     font-weight: 600;
   }
   
-  /* Styles for images within the image area */
   .img-preview img {
     position: absolute;
     top: 0;
@@ -103,7 +92,6 @@
     z-index: 100;
   }
   
-  /* Pseudo element styling for the image area */
   .img-preview::before {
     content: attr(data-img);
     position: absolute;
@@ -124,7 +112,6 @@
     z-index: 200;
   }
   
-  /* Pseudo element behavior on hover */
   .img-preview.active:hover::before {
     opacity: 1;
   }
@@ -133,16 +120,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center; /* Center buttons horizontally */
+    align-items: center; 
 
   }
   
-  /* Select image button styling */
   .create-item {
     display: block;
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
-    width: 70%;
+    width: 90%;
     padding: 10px 0;
     border-radius: 15px;
     background: var(--pink);
@@ -154,7 +140,6 @@
     transition: all .3s ease;
   }
   
-  /* Button hover effect */
   .create-item:hover {
     background: var(--dark-pink);
   }
@@ -163,7 +148,7 @@
     display: block;
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
-    width: 70%;
+    width: 90%;
     padding: 10px 0;
     border-radius: 15px;
     background: #dc6262;
@@ -176,7 +161,6 @@
     margin-bottom: 5px;    
   }
   
-  /* Button hover effect */
   .cancel:hover {
     background: #bd4848;
   }
@@ -191,14 +175,14 @@
     height: 5px;
     background: #fff;
     padding: 10px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     border-radius: 8px;
     align-items: center;
     cursor: pointer;
     justify-content: space-between;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    width: 40vh;
+    width: 20vh;
   }
   
   .select-menu .options {
@@ -236,7 +220,7 @@
   }
   
   .select-menu .options .option .option-text {
-    font-size: 15px;
+    font-size: 14px;
     color: #333;
   }
   
@@ -283,3 +267,4 @@
       opacity: 0;
     }
   }
+

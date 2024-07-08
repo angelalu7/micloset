@@ -1,4 +1,4 @@
-/* Styles for the form popup */
+/* styles for the add item popup */
 .form-popup {
     display: block;
     font-family: 'Montserrat', sans-serif;
@@ -15,18 +15,16 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9;
-    width: 100%; /* Ensure it takes the full width of its parent */
+    width: 100%; 
     max-width: 400px;
   }
-  
-  /* Styles for the form container */
+
   .form-container {
     max-width: 400px;
     padding: 10px;
     background-color: white;
   }
   
-  /* Styles for the close button */
   .close-thin {
     color: #777;
     font: 19px/100% arial, sans-serif;
@@ -35,7 +33,7 @@
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;
     top: 5px;
-    border: none; /* Remove the border */
+    border: none; 
     outline: none;
     background-color: transparent;
     cursor: pointer;
@@ -45,7 +43,7 @@
     content: '×';
   }
   
-  /* Define color variables */
+  /* define colour vars */
   :root {
     --pink: #a78181;
     --light-blue: #B6DBF6;
@@ -53,7 +51,7 @@
     --grey: #f2f2f2;
   }
   
-  /* Container styles for images */
+  /* image container styling */
   .container {
     max-width: 400px;
     width: 85%;
@@ -62,7 +60,7 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content horizontally */
+    align-items: center; 
     justify-content: center;
   }
   
@@ -75,8 +73,8 @@
     text-shadow: 0 1px 0 #fff;
     top: 5px;
     display: none;
-    z-index: 200; /* Ensure the button is above the image */
-    border: none; /* Remove the border */
+    z-index: 200; 
+    border: none; 
     outline: none;
     background-color: transparent;
   }
@@ -85,7 +83,6 @@
     content: '×';
   }
   
-  /* Styles for the image area */
   .img-area {
     position: relative;
     width: 100%;
@@ -100,29 +97,25 @@
     flex-direction: column;
   }
   
-  /* Icon size */
   .img-area .icon {
     font-size: 100px;
   }
   
-  /* Heading for image area */
+
   .img-area h3 {
     font-size: 20px;
     font-weight: 500;
-    margin bottom: 6px;
+    margin-bottom: 6px;
   }
   
-  /* Paragraph styling */
   .img-area p {
     color: #999;
   }
   
-  /* Span styling */
   .img-area p span {
     font-weight: 600;
   }
   
-  /* Styles for images within the image area */
   .img-area img {
     position: absolute;
     top: 0;
@@ -134,7 +127,6 @@
     z-index: 100;
   }
   
-  /* Pseudo element styling for the image area */
   .img-area::before {
     content: attr(data-img);
     position: absolute;
@@ -155,12 +147,10 @@
     z-index: 200;
   }
   
-  /* Pseudo element behavior on hover */
   .img-area.active:hover::before {
     opacity: 1;
   }
   
-  /* Select image button styling */
   .select-image {
     display: block;
     font-family: "Montserrat", sans-serif;
@@ -177,7 +167,7 @@
     transition: all .3s ease;
   }
   
-  /* Button hover effect */
   .select-image:hover {
     background: var(--dark-pink);
   }
+  
