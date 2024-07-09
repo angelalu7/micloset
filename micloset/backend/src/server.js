@@ -64,7 +64,7 @@ app.delete('/api/items', async (req, res) => {
         res.json({ message: 'Item deleted' });
     } catch (err) {
         console.error('Error deleting item:', err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(400).json({ message: err.message });
     }
 })
 
