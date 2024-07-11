@@ -11,12 +11,21 @@ html, body {
   overflow-x: hidden; 
 }
 
+/* define colour vars */
+:root {
+  --pink: #a78181;
+  --light-blue: #B6DBF6;
+  --dark-pink: #8c5454;
+  --grey: #f2f2f2;
+}
+
 /* page styling */
 body {
   font-family: "Major Mono Display", monospace;  
   background-color: #fbeded;
 }
 
+/* header general styling */
 header {
   background-color: #a78181;
   color: white;
@@ -38,6 +47,18 @@ header {
   margin: 0;
 }
 
+/* footer styling */
+footer {
+  text-align: center;
+  background-color: #a78181;
+  color: white;
+  padding: 10px 0;
+  /* position: fixed; */
+  bottom: 0; 
+  width: 100%;
+}
+
+/* my closet button styling */
 .my-closet {
   border: 1px;
   border-radius: 3px;
@@ -55,6 +76,7 @@ header {
   background-color: #6d3b3b;
 }
 
+/* help button styling */
 .help-button {
   width: 25px;
   height: 25px;
@@ -66,6 +88,7 @@ header {
   cursor: pointer;
 }
 
+/* closet area (main) styling */
 main {
   padding-left: 40px;
   padding-right: 40px;
@@ -83,21 +106,7 @@ main {
   height: 100vh; 
 }
 
-/* define colour vars */
-:root {
-  --pink: #a78181;
-  --light-blue: #B6DBF6;
-  --dark-pink: #8c5454;
-  --grey: #f2f2f2;
-}
-
-#virtual-dress-up {
-  display: flex;
-  justify-content: space-between;
-  height: 80vh;
-  z-index: 1;
-}
-
+/* avatar container  */
 #avatar {
   width: auto;
   height: 100%;
@@ -114,10 +123,18 @@ main {
   /*display: none;*/
 }
 
-#clothing-items {
-  flex: 1;
+/* closet container styling */
+#virtual-dress-up {
   display: flex;
+  justify-content: space-between;
+  height: 80vh;
+  z-index: 1;
+}
+
+#clothing-items {
+  display: grid;
   flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
   max-width: 800px;
   min-width: 380px;
@@ -135,9 +152,11 @@ main {
 .clothing-item img {
   max-width: 25%;
   height: auto;
-}
+} 
 
+/* add item button styling */
 .add-item-button {
+  display: block;
   position: absolute;
   bottom: 15px;
   right: 15px;
@@ -157,16 +176,7 @@ main {
   background-color: #8c5454;
 }
 
-footer {
-  text-align: center;
-  background-color: #a78181;
-  color: white;
-  padding: 10px 0;
-  /* position: fixed; */
-  bottom: 0; 
-  width: 100%;
-}
-
+/* category switch buttons styling */
 #clothing-nav {
   padding-bottom: 10px;
   max-width: 800px;

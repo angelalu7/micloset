@@ -1,4 +1,6 @@
 /* styles for the create item popup */
+
+/* general form styling */
 .create-form-popup {
     display: block;
     font-family: 'Montserrat', sans-serif;
@@ -38,6 +40,7 @@
     justify-content: space-between;
   }
   
+  /* styling image display area */
   .left-section {
     flex: 1;
     display: flex;
@@ -46,6 +49,7 @@
     align-items: center;
   }
   
+  /* styling item name and category display area */
   .right-section {
     flex: 1; 
     display: flex;
@@ -55,6 +59,7 @@
     margin-left: 20px;
   }
 
+  /* image preview styling */
   .img-preview {
     position: relative;
     width: 20vh;
@@ -116,6 +121,7 @@
     opacity: 1;
   }
   
+  /* create item button */
   .button-container {
     display: flex;
     justify-content: center;
@@ -143,7 +149,14 @@
   .create-item:hover {
     background: var(--dark-pink);
   }
+
+  /* disabled styling if fields are not filled */
+  .create-item:disabled {
+    background: #ccc; 
+    cursor: not-allowed; 
+  }
   
+  /* cancel button styling */
   .cancel {
     display: block;
     font-family: "Montserrat", sans-serif;
@@ -165,6 +178,7 @@
     background: #bd4848;
   }
 
+  /* category selection menu styling */
   .select-menu {
     max-width: 70vh;
     margin: 15px auto;
