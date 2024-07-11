@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
 
@@ -14,6 +15,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
+// define clothing item scheme
 const itemSchema = new mongoose.Schema({
     name: String,
     category: String,
@@ -23,7 +25,7 @@ const itemSchema = new mongoose.Schema({
 
 const Item = mongoose.model('Item', itemSchema);
 
-
+// define item saving process
 app.post('/api/items', async (req, res) => {
     console.log('test');
     const { name, category, image, imageURL } = req.body;
@@ -44,6 +46,7 @@ app.post('/api/items', async (req, res) => {
     }
 });
 
+// define item getting process
 app.get('/api/items', async (req, res) => {
     try {
         const items = await Item.find();
@@ -53,13 +56,14 @@ app.get('/api/items', async (req, res) => {
     }
 });
 
+// define item deleting process
 app.delete('/api/items', async (req, res) => {
     const itemId = req.params.id;
 
     try {
         const itemToDelete = await Item.findByIdAndDelete(itemId);
         if (!itemToDelete) {
-            return res.status(404).json({ message: 'Item not found' });
+            return res.status(400).json({ message: 'Item not found' });
         }
         res.json({ message: 'Item deleted' });
     } catch (err) {
