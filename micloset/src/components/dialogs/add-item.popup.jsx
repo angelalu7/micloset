@@ -6,10 +6,11 @@ import CreateItemPopup from './create-item.popup';
  * Displays the select image popup to pick an image from the files
  * @param {Boolean} displayForm - Boolean value to show or hide select image popup
  * @param {Function} onClose - A function to close the popup
+ * @param {Function} onItemCreated - A function to call when an item is created
  *
  */
 
-const AddItemPopup = ({ displayForm, onClose }) => {
+const AddItemPopup = ({ displayForm, onClose, onItemCreated }) => {
   const [showCreateItemPopup, setShowCreateItemPopup] = useState(false);
   const [selectedImageURL, setSelectedImageURL] = useState(null);
   const [isImageSelected, setIsImageSelected] = useState(false);
@@ -89,7 +90,12 @@ const AddItemPopup = ({ displayForm, onClose }) => {
 
   return (
     <>
-      <CreateItemPopup display={showCreateItemPopup} onClose={() => { setShowCreateItemPopup(false); }} selectedImageURL={selectedImageURL} />
+      <CreateItemPopup 
+        display={showCreateItemPopup} 
+        onClose={() => { setShowCreateItemPopup(false); }} 
+        selectedImageURL={selectedImageURL}
+        onItemCreated={onItemCreated}
+      />
       {displayForm ? (
         <div className="form-popup">
           <button className="close-thin" onClick={() => { onClose(); clearInfo(); }}></button>
@@ -114,3 +120,4 @@ const AddItemPopup = ({ displayForm, onClose }) => {
 };
 
 export default AddItemPopup;
+
