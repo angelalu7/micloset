@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../styles/create-item.popup.css'
 
-const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
+const CreateItemPopup = ({ display, onClose, selectedImageURL, onItemCreated }) => {
     const [isOptionMenuActive, setOptionMenuActive] = useState(false);
     const [selectedOption, setSelectedOption] = useState('Select category');
     const [itemName, setItemName] = useState('');
@@ -40,13 +40,16 @@ const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
         };
 
         try {
-            console.log('test2');
-            console.log(itemData);
             const response = await axios.post('http://localhost:4173/api/items', itemData);
             console.log('Item created:', response.data);
             handleCancelClick();
+            // Notify parent component that item was created
+            if (onItemCreated) {
+                onItemCreated();
+            }
         } catch(err) {
             console.error('Error creating item:', err);
+            alert('Failed to create item. Please try again.');
         }
     };
 
@@ -94,3 +97,4 @@ const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
 };
 
 export default CreateItemPopup;
+
