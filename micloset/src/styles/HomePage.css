@@ -115,12 +115,48 @@ main {
   position: relative;
   padding-right: 60px;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
 }
 
-#avatar img {
+.avatar-base {
   height: 100%;
-  display: flex;
-  /*display: none;*/
+  max-height: 100%;
+  width: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-overlay {
+  position: absolute;
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.clear-avatar-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background-color: #8c5454;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.clear-avatar-button:hover {
+  background-color: #6d3b3b;
 }
 
 /* closet container styling */
@@ -134,46 +170,133 @@ main {
 #clothing-items {
   display: grid;
   flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
   max-width: 800px;
   min-width: 380px;
   width: 70vh;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
 .clothing-item {
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   background-color: white;
-  padding: 10px;
+  padding: 15px;
   position: relative;
-  width: 800px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.clothing-item img {
-  max-width: 25%;
+.clothing-item:hover {
+  border-color: #a78181;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.clothing-item.applied {
+  border-color: #8c5454;
+  background-color: #fbeded;
+  box-shadow: 0 4px 12px rgba(140, 84, 84, 0.3);
+}
+
+.clothing-item.add-item-card {
+  justify-content: center;
+  min-height: 200px;
+  border-style: dashed;
+  border-color: #a78181;
+  background-color: #fbeded;
+}
+
+.clothing-item.add-item-card:hover {
+  background-color: #f5e0e0;
+}
+
+.item-thumbnail {
+  width: 100%;
+  max-width: 150px;
   height: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.item-info {
+  text-align: center;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-info h4 {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.item-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.delete-item-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.delete-item-button:hover {
+  opacity: 1;
+  background-color: #cc0000;
+  transform: scale(1.1);
 } 
 
 /* add item button styling */
 .add-item-button {
   display: block;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  border: 1px;
-  border-radius: 3px;
-  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
   cursor: pointer;
   color: #fff;
   background-color: #a78181;
   text-transform: uppercase;
   line-height: 1em;
   letter-spacing: .2rem;
-  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+  font-size: 14px;
+  transition: background-color .2s ease-in-out, transform .2s ease-in-out;
+  width: 100%;
 }
 
 .add-item-button:hover {
   background-color: #8c5454;
+  transform: scale(1.05);
 }
 
 /* category switch buttons styling */
@@ -305,6 +428,10 @@ main {
 
 .clothing-categories input:nth-last-of-type(8):checked ~ label:last-of-type::after {
   transform: translateX(-700%);
+}
+
+.clothing-categories input:nth-last-of-type(9):checked ~ label:last-of-type::after {
+  transform: translateX(-800%);
 }
 
 .clothing-categories input:nth-last-of-type(9):checked ~ label:last-of-type::after {
