@@ -73,19 +73,31 @@ function HomePage() {
     const isCurrentlyEquipped = equippedItems[category]?._id === item._id;
     
     // If item is already equipped, remove it. Otherwise, equip it
-    setEquippedItems(prev => ({
-      ...prev,
-      [category]: isCurrentlyEquipped ? null : item
-    }));
+    if (isCurrentlyEquipped) {
+      setEquippedItems(prev => ({
+        ...prev,
+        [category]: null
+      }));
+    } else {
+      setEquippedItems(prev => {
+        const newState = { ...prev, [category]: item };
+        
+        // If equipping a dress, remove tops and bottoms
+        if (category === 'dresses') {
+          newState.tops = null;
+          newState.bottoms = null;
+        }
+        
+        // If equipping tops or bottoms, remove dress
+        if (category === 'tops' || category === 'bottoms') {
+          newState.dresses = null;
+        }
+        
+        return newState;
+      });
+    }
   };
 
-  const handleRemoveItem = (category, event) => {
-    event.stopPropagation();
-    setEquippedItems(prev => ({
-      ...prev,
-      [category]: null
-    }));
-  };
 
   const handleAvatarUpload = async (event) => {
     const file = event.target.files[0];
