@@ -70,6 +70,5 @@ Open your browser and navigate to the frontend URL (usually `http://localhost:51
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-
 ### Backend
 - `npm run dev` - Start development server with nodemon (auto-reload)
