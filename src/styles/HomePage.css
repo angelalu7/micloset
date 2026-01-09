@@ -21,7 +21,7 @@ html, body {
 
 /* page styling */
 body {
-  font-family: "Major Mono Display", monospace;  
+  font-family: 'Montserrat', sans-serif; 
   background-color: #fbeded;
 }
 
@@ -33,6 +33,7 @@ header {
   padding: 10px 0;
   width: 100%;
   box-sizing: border-box;
+  font-family: "Major Mono Display", monospace;  
 }
 
 #heading {
@@ -199,41 +200,36 @@ main {
   object-fit: contain;
   object-position: center;
   z-index: 2;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
-.avatar-clothing:hover {
-  opacity: 0.8;
+/* TODO: make these more dynamic and responsive to the screen size */
+.clothing-tops {
+  z-index: 2;
+  object-position: center 35%;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 28%;
 }
 
 .clothing-shoes {
-  z-index: 2;
+  z-index: 3;
   object-position: center bottom;
-  transform: translateX(-50%) scale(1);
-  transform-origin: center bottom;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 65%;
 }
 
 .clothing-bottoms {
-  z-index: 3;
-  object-position: center center;
-  transform: translateX(-50%) scale(1);
-  transform-origin: center center;
-}
-
-.clothing-tops {
   z-index: 4;
-  object-position: center top;
-  transform: translateX(-50%) scale(0.8);
-  transform-origin: center top;
+  object-position: center center;
+  transform: translateX(calc(-50% - 2px)) scale(1.43) translateY(-5%);
+  transform-origin: center 36%;
 }
 
 .clothing-jackets {
   z-index: 5;
   object-position: center top;
-  transform: translateX(-50%) scale(0.85);
-  transform-origin: center top;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 9.5%;
 }
 
 .remove-avatar-button {
@@ -273,17 +269,41 @@ main {
 
 #clothing-items {
   display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(5, 150.4px);
+  column-gap: 8px;
+  row-gap: 8px;
+  width: 800px;
   max-width: 800px;
-  min-width: 380px;
-  width: 70vh;
+  min-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: start;
+  box-sizing: border-box;
+  padding-right: 8px;
+}
+
+#clothing-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+#clothing-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#clothing-items::-webkit-scrollbar-thumb {
+  background: #a78181;
+  border-radius: 4px;
+}
+
+#clothing-items::-webkit-scrollbar-thumb:hover {
+  background: #8c5454;
 }
 
 .clothing-item {
-  aspect-ratio: 1;
-  width: 100%;
+  width: 150.4px;
+  height: 150.4px;
   border: 1px solid #ccc;
   background-color: white;
   padding: 0;
@@ -295,6 +315,8 @@ main {
   overflow: hidden;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
   cursor: pointer;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .clothing-item:hover {
@@ -335,6 +357,32 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* TODO: make these more dynamic and responsive to the screen size */
+.item-category-tops img,
+.item-category-jackets img {
+  object-fit: cover;
+  object-position: center 15%;
+  transform: scale(1.45) translateY(-5%);
+}
+
+.item-category-dresses img {
+  object-fit: cover;
+  object-position: center 45%;
+  transform: scale(1.2) translateY(-5%);
+}
+
+.item-category-bottoms img {
+  object-fit: cover;
+  object-position: center 95%;
+  transform: scale(1.45) translateY(-5%);
+}
+
+.item-category-shoes img {
+  object-fit: cover;
+  object-position: center 150%;
+  transform: scale(2) translateY(-5%);
 }
 
 .item-name {
