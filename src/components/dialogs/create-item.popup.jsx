@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../styles/create-item.popup.css'
 
-const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
+const CreateItemPopup = ({ display, onClose, selectedImageURL, onItemCreated }) => {
     const [isOptionMenuActive, setOptionMenuActive] = useState(false);
     const [selectedOption, setSelectedOption] = useState('Select category');
     const [itemName, setItemName] = useState('');
@@ -22,31 +22,44 @@ const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
       setOptionMenuActive(false);
     };
 
-    const handleCancelClick = () => {
+    const resetForm = () => {
         setSelectedOption('Select category');
+        setItemName('');
         setOptionMenuActive(false);
+        setIsFormValid(false);
+    };
+
+    const handleCancelClick = () => {
+        resetForm();
         onClose();
-      };
+    };
 
     const handleCreateItem = async (e) => {
         e.preventDefault();
-        console.log({selectedImageURL});
+        
+        if (!selectedImageURL || !itemName.trim() || selectedOption === 'Select category') {
+            alert('Please fill in all fields');
+            return;
+        }
 
         const itemData = {
-            name: itemName,
+            name: itemName.trim(),
             category: selectedOption,
             image: selectedImageURL,
             imageURL: selectedImageURL
         };
 
         try {
-            console.log('test2');
-            console.log(itemData);
             const response = await axios.post('http://localhost:4173/api/items', itemData);
             console.log('Item created:', response.data);
-            handleCancelClick();
+            resetForm();
+            onClose();
+            if (onItemCreated) {
+                onItemCreated();
+            }
         } catch(err) {
             console.error('Error creating item:', err);
+            alert(err.response?.data?.message || 'Failed to create item. Please try again.');
         }
     };
 
@@ -64,7 +77,14 @@ const CreateItemPopup = ({ display, onClose, selectedImageURL }) => {
                             </div>
                         </div>
                         <div className='right-section'>
-                            <input type="text" id="itemName" placeholder="Item Name" onChange={(e) => setItemName(e.target.value)} required />
+                            <input 
+                                type="text" 
+                                id="itemName" 
+                                placeholder="Item Name" 
+                                value={itemName}
+                                onChange={(e) => setItemName(e.target.value)} 
+                                required 
+                            />
                             <div className={`select-menu ${isOptionMenuActive ? 'active' : ''}`}>
                                 <div className="select-btn" onClick={handleSelectClick}>
                                     <span className="sBtn-text">{selectedOption}</span>
