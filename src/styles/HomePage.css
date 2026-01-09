@@ -1,0 +1,560 @@
+/* defaults */
+h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+/* define colour vars */
+:root {
+  --pink: #a78181;
+  --light-blue: #B6DBF6;
+  --dark-pink: #8c5454;
+  --grey: #f2f2f2;
+}
+
+/* page styling */
+body {
+  font-family: "Major Mono Display", monospace;  
+  background-color: #fbeded;
+}
+
+/* header general styling */
+header {
+  background-color: #a78181;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#heading {
+  padding-top: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#heading h1 {
+  grid-column: 2;
+  margin: 0;
+  justify-self: center;
+}
+
+#heading .my-closet {
+  grid-column: 1;
+  justify-self: start;
+}
+
+#heading .help-button {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.header-title {
+  margin: 0;
+}
+
+/* footer styling */
+footer {
+  text-align: center;
+  background-color: #a78181;
+  color: white;
+  padding: 10px 0;
+  /* position: fixed; */
+  bottom: 0; 
+  width: 100%;
+}
+
+/* my closet button styling */
+.my-closet {
+  border: 1px;
+  border-radius: 3px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #8c5454;
+  text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: .2rem;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.my-closet:hover {
+  background-color: #6d3b3b;
+}
+
+/* help button styling */
+.help-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #e4e3e3;
+  font-size: 14px;
+  border: solid #e4e3e3;
+  cursor: pointer;
+}
+
+/* closet area (main) styling */
+main {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  display: flex; 
+  flex-direction: column; 
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+}
+
+/* avatar container  */
+#avatar {
+  width: auto;
+  height: 100%;
+  display: flex;
+  background-color: #fbeded;
+  position: relative;
+  padding-right: 60px;
+  box-sizing: border-box;
+}
+
+.avatar-container {
+  position: relative;
+  height: 100%;
+  width: auto;
+  display: inline-block;
+  cursor: pointer;
+  min-width: 200px;
+  min-height: 300px;
+}
+
+.avatar-placeholder {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #666;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.avatar-placeholder:hover {
+  border-color: #a78181;
+  background-color: #f5f5f5;
+}
+
+.avatar-placeholder .icon {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.avatar-placeholder p {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.avatar-base {
+  height: 100%;
+  width: auto;
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  z-index: 1;
+}
+
+.avatar-clothing {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 2;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+.avatar-clothing:hover {
+  opacity: 0.8;
+}
+
+.clothing-shoes {
+  z-index: 2;
+  object-position: center bottom;
+  transform: translateX(-50%) scale(1);
+  transform-origin: center bottom;
+}
+
+.clothing-bottoms {
+  z-index: 3;
+  object-position: center center;
+  transform: translateX(-50%) scale(1);
+  transform-origin: center center;
+}
+
+.clothing-tops {
+  z-index: 4;
+  object-position: center top;
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: center top;
+}
+
+.clothing-jackets {
+  z-index: 5;
+  object-position: center top;
+  transform: translateX(-50%) scale(0.85);
+  transform-origin: center top;
+}
+
+.remove-avatar-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(220, 98, 98, 0.9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  z-index: 100;
+  opacity: 0.8;
+}
+
+.remove-avatar-button:hover {
+  background-color: #bd4848;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* closet container styling */
+#virtual-dress-up {
+  display: flex;
+  justify-content: space-between;
+  height: 80vh;
+  z-index: 1;
+}
+
+#clothing-items {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 800px;
+  min-width: 380px;
+  width: 70vh;
+}
+
+.clothing-item {
+  aspect-ratio: 1;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 0;
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.clothing-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.clothing-item.equipped {
+  border: 2px solid #a78181;
+  box-shadow: 0 0 0 2px rgba(167, 129, 129, 0.2);
+}
+
+.clothing-item.equipped:hover {
+  border-color: #8c5454;
+  box-shadow: 0 4px 12px rgba(167, 129, 129, 0.3);
+}
+
+.equipped-indicator {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(167, 129, 129, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.clothing-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+  padding: 8px 4px 6px;
+  word-break: break-word;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.clothing-item:hover .item-name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delete-item-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(220, 98, 98, 0.9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  opacity: 0;
+  z-index: 10;
+  transform: scale(0.8);
+}
+
+.clothing-item:hover .delete-item-button {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.delete-item-button:hover {
+  background-color: #bd4848;
+  transform: scale(1.1);
+} 
+
+/* add item button styling */
+.add-item-container {
+  border: 2px dashed #ccc;
+  background-color: #f9f9f9;
+}
+
+.add-item-container:hover {
+  border-color: #a78181;
+  background-color: #f5f5f5;
+}
+
+.add-item-button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #666;
+  background-color: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-item-button:hover {
+  color: #a78181;
+}
+
+/* category switch buttons styling */
+#clothing-nav {
+  padding-bottom: 10px;
+  max-width: 800px;
+  min-width: 380px;
+  width: 800px;
+}
+
+.clothing-categories {
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+.clothing-categories input {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.clothing-categories label {
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  flex: 1 1 0px;
+  position: relative;
+  z-index: 2;
+  transition: inherit;
+}
+
+.clothing-categories label:last-of-type {
+  z-index: 1;
+}
+
+.clothing-categories label:last-of-type::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -2;
+  background-color: black;
+  transition: inherit;
+}
+
+.clothing-categories {
+  border-radius: 0.5rem;
+  background: #e5dbe1;
+  height: 2rem;
+  padding: 0.125rem;
+}
+
+.clothing-categories label {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.clothing-categories label:not(:first-of-type)::before {
+  content: "";
+  position: absolute;
+  z-index: -3;
+  top: 0.5rem;
+  left: 0;
+  bottom: 0.5rem;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  transition: inherit;
+}
+
+.clothing-categories input:checked + label {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.clothing-categories input:checked + label::before,
+.clothing-categories input:checked + label + input + label::before {
+  opacity: 0;
+}
+
+.clothing-categories:focus-within {
+  box-shadow: 0 0 0 .2rem hsl(0, 21%, 65%);
+}
+
+.clothing-categories label:last-of-type::after {
+  background: white;
+  border-radius: 0.4275rem;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.04), 0px 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.clothing-categories input:nth-last-of-type(2):checked ~ label:last-of-type::after {
+  transform: translateX(-100%);
+}
+
+.clothing-categories input:nth-last-of-type(3):checked ~ label:last-of-type::after {
+  transform: translateX(-200%);
+}
+
+.clothing-categories input:nth-last-of-type(4):checked ~ label:last-of-type::after {
+  transform: translateX(-300%);
+}
+
+.clothing-categories input:nth-last-of-type(5):checked ~ label:last-of-type::after {
+  transform: translateX(-400%);
+}
+
+.clothing-categories input:nth-last-of-type(6):checked ~ label:last-of-type::after {
+  transform: translateX(-500%);
+}
+
+.clothing-categories input:nth-last-of-type(7):checked ~ label:last-of-type::after {
+  transform: translateX(-600%);
+}
+
+.clothing-categories input:nth-last-of-type(8):checked ~ label:last-of-type::after {
+  transform: translateX(-700%);
+}
+
+.clothing-categories input:nth-last-of-type(9):checked ~ label:last-of-type::after {
+  transform: translateX(-800%);
+}

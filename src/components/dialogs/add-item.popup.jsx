@@ -9,34 +9,40 @@ import CreateItemPopup from './create-item.popup';
  *
  */
 
-const AddItemPopup = ({ displayForm, onClose }) => {
+const AddItemPopup = ({ displayForm, onClose, onItemCreated }) => {
   const [showCreateItemPopup, setShowCreateItemPopup] = useState(false);
   const [selectedImageURL, setSelectedImageURL] = useState(null);
   const [isImageSelected, setIsImageSelected] = useState(false);
 
 
   const clearInfo = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     const imgInput = document.querySelector('input[type="file"]');
-    imgInput.value = '';
+    if (imgInput) imgInput.value = '';
     const imgArea = document.querySelector('.img-area');
     const closeImageButton = document.querySelector('.clear-img-thin');
-    imgArea.classList.remove('active');
-    closeImageButton.style.display = "none";
     const selectImage = document.querySelector('.select-image');
-    selectImage.textContent = "Select Image";
+    if (imgArea) {
+      imgArea.classList.remove('active');
+      const allImg = imgArea.querySelectorAll('img');
+      allImg.forEach(item => item.remove());
+    }
+    if (closeImageButton) closeImageButton.style.display = "none";
+    if (selectImage) selectImage.textContent = "Select Image";
     setIsImageSelected(false);
-    event.preventDefault();
+    setSelectedImageURL(null);
   };
 
   const selectImageClick = () => {
     const selectImage = document.querySelector('.select-image');
     const inputFile = document.querySelector('#file');
-    if (selectImage.textContent === "Select Image") {
-      inputFile.click();
-    } else if (selectImage.textContent === "Create Item") {
+    if (selectImage && selectImage.textContent === "Select Image") {
+      if (inputFile) inputFile.click();
+    } else if (selectImage && selectImage.textContent === "Create Item") {
       setShowCreateItemPopup(true);
       onClose();
-      clearInfo();
     }
   };
 
@@ -71,28 +77,42 @@ const AddItemPopup = ({ displayForm, onClose }) => {
   };
 
   const clearImage = (event) => {
+    event.preventDefault();
     setIsImageSelected(false);
+    setSelectedImageURL(null);
     const imgInput = document.querySelector('input[type="file"]');
-    imgInput.value = '';
+    if (imgInput) imgInput.value = '';
     const imgArea = document.querySelector('.img-area');
     const closeImageButton = document.querySelector('.clear-img-thin');
     const selectImage = document.querySelector('.select-image');
-    imgArea.classList.remove('active');
-    const allImg = imgArea.querySelectorAll('img');
-    allImg.forEach(item => item.remove());
-    closeImageButton.style.display = "none";
-    selectImage.textContent = "Select Image";
-    event.preventDefault();
+    if (imgArea) {
+      imgArea.classList.remove('active');
+      const allImg = imgArea.querySelectorAll('img');
+      allImg.forEach(item => item.remove());
+    }
+    if (closeImageButton) closeImageButton.style.display = "none";
+    if (selectImage) selectImage.textContent = "Select Image";
   };
 
-  console.log({showCreateItemPopup});
+  const handleCreateItemClose = () => {
+    setShowCreateItemPopup(false);
+    clearInfo();
+    if (onItemCreated) {
+      onItemCreated();
+    }
+  };
 
   return (
     <>
-      <CreateItemPopup display={showCreateItemPopup} onClose={() => { setShowCreateItemPopup(false); }} selectedImageURL={selectedImageURL} />
+      <CreateItemPopup 
+        display={showCreateItemPopup} 
+        onClose={handleCreateItemClose} 
+        selectedImageURL={selectedImageURL}
+        onItemCreated={onItemCreated}
+      />
       {displayForm ? (
         <div className="form-popup">
-          <button className="close-thin" onClick={() => { onClose(); clearInfo(); }}></button>
+          <button className="close-thin" onClick={(e) => { clearInfo(e); onClose(); }}></button>
           <div className="container">
             <input type="file" id="file" accept="image/*" hidden onChange={inputFileChange} />
             <div className="img-area" data-img="">
