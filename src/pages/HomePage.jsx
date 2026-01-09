@@ -69,10 +69,13 @@ function HomePage() {
       return;
     }
     
-    // Equip the item - replace existing item in same category
+    const category = item.category.toLowerCase();
+    const isCurrentlyEquipped = equippedItems[category]?._id === item._id;
+    
+    // If item is already equipped, remove it. Otherwise, equip it
     setEquippedItems(prev => ({
       ...prev,
-      [item.category.toLowerCase()]: item
+      [category]: isCurrentlyEquipped ? null : item
     }));
   };
 

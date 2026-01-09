@@ -224,9 +224,9 @@ main {
 
 .clothing-tops {
   z-index: 4;
-  object-position: center top;
-  transform: translateX(-50%) scale(0.8);
-  transform-origin: center top;
+  object-position: center 35%;
+  transform: translateX(calc(-50% + 5px)) scale(0.8) translateY(-5%);
+  transform-origin: center 28%;
 }
 
 .clothing-jackets {
@@ -273,17 +273,41 @@ main {
 
 #clothing-items {
   display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(5, 150.4px);
+  column-gap: 8px;
+  row-gap: 8px;
+  width: 800px;
   max-width: 800px;
-  min-width: 380px;
-  width: 70vh;
+  min-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: start;
+  box-sizing: border-box;
+  padding-right: 8px;
+}
+
+#clothing-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+#clothing-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#clothing-items::-webkit-scrollbar-thumb {
+  background: #a78181;
+  border-radius: 4px;
+}
+
+#clothing-items::-webkit-scrollbar-thumb:hover {
+  background: #8c5454;
 }
 
 .clothing-item {
-  aspect-ratio: 1;
-  width: 100%;
+  width: 150.4px;
+  height: 150.4px;
   border: 1px solid #ccc;
   background-color: white;
   padding: 0;
@@ -295,6 +319,8 @@ main {
   overflow: hidden;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
   cursor: pointer;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .clothing-item:hover {
