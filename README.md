@@ -29,13 +29,13 @@ cd ..
 Create a `.env` file in the root directory (`micloset/`) with your MongoDB connection string:
 
 ```
-MONGODB_URI=mongodb://localhost:27017/micloset
+MONGODB_URI=mongo_connection_string
 ```
 
 Or if using MongoDB Atlas:
 
 ```
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/micloset
+MONGODB_URI=mongo_uri
 ```
 
 ## Running the Application
