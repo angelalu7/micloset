@@ -21,7 +21,7 @@ html, body {
 
 /* page styling */
 body {
-  font-family: "Major Mono Display", monospace;  
+  font-family: 'Montserrat', sans-serif; 
   background-color: #fbeded;
 }
 
@@ -33,6 +33,7 @@ header {
   padding: 10px 0;
   width: 100%;
   box-sizing: border-box;
+  font-family: "Major Mono Display", monospace;  
 }
 
 #heading {
@@ -199,41 +200,36 @@ main {
   object-fit: contain;
   object-position: center;
   z-index: 2;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
-.avatar-clothing:hover {
-  opacity: 0.8;
+/* TODO: make these more dynamic and responsive to the screen size */
+.clothing-tops {
+  z-index: 2;
+  object-position: center 35%;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 28%;
 }
 
 .clothing-shoes {
-  z-index: 2;
+  z-index: 3;
   object-position: center bottom;
-  transform: translateX(-50%) scale(1);
-  transform-origin: center bottom;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 65%;
 }
 
 .clothing-bottoms {
-  z-index: 3;
-  object-position: center center;
-  transform: translateX(-50%) scale(1);
-  transform-origin: center center;
-}
-
-.clothing-tops {
   z-index: 4;
-  object-position: center 35%;
-  transform: translateX(calc(-50% + 5px)) scale(0.8) translateY(-5%);
-  transform-origin: center 28%;
+  object-position: center center;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 36%;
 }
 
 .clothing-jackets {
   z-index: 5;
   object-position: center top;
-  transform: translateX(-50%) scale(0.85);
-  transform-origin: center top;
+  transform: translateX(calc(-50% - 2px)) scale(1.45) translateY(-5%);
+  transform-origin: center 9.5%;
 }
 
 .remove-avatar-button {
@@ -361,6 +357,27 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* TODO: make these more dynamic and responsive to the screen size */
+.item-category-tops img,
+.item-category-jackets img,
+.item-category-dresses img {
+  object-fit: cover;
+  object-position: center 15%;
+  transform: scale(1.45) translateY(-5%);
+}
+
+.item-category-bottoms img {
+  object-fit: cover;
+  object-position: center 95%;
+  transform: scale(1.45) translateY(-5%);
+}
+
+.item-category-shoes img {
+  object-fit: cover;
+  object-position: center 150%;
+  transform: scale(2) translateY(-5%);
 }
 
 .item-name {

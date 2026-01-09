@@ -146,8 +146,6 @@ function HomePage() {
         src={getImageSrc(item)}
         alt={item.name}
         className={`avatar-clothing ${className}`}
-        onClick={(e) => handleRemoveItem(category, e)}
-        title={`Remove ${item.name}`}
       />
     );
   };
@@ -220,9 +218,10 @@ function HomePage() {
           <div id="clothing-items">
             {closetItems.map(item => {
               const isEquipped = equippedItems[item.category.toLowerCase()]?._id === item._id;
+              const categoryClass = `item-category-${item.category.toLowerCase()}`;
               return (
                 <div 
-                  className={`clothing-item ${isEquipped ? 'equipped' : ''}`} 
+                  className={`clothing-item ${categoryClass} ${isEquipped ? 'equipped' : ''}`} 
                   key={item._id}
                   onClick={(e) => handleItemClick(item, e)}
                 >
@@ -270,9 +269,9 @@ function HomePage() {
               {avatarImageURL ? (
                 <>
                   <img src={avatarImageURL} alt="Avatar" className="avatar-base" />
+                  {renderClothingLayer(equippedItems.dresses || equippedItems.tops, equippedItems.dresses ? 'dresses' : 'tops', 'clothing-tops')}
                   {renderClothingLayer(equippedItems.shoes, 'shoes', 'clothing-shoes')}
                   {renderClothingLayer(equippedItems.bottoms, 'bottoms', 'clothing-bottoms')}
-                  {renderClothingLayer(equippedItems.dresses || equippedItems.tops, equippedItems.dresses ? 'dresses' : 'tops', 'clothing-tops')}
                   {renderClothingLayer(equippedItems.jackets, 'jackets', 'clothing-jackets')}
                   <button 
                     className="remove-avatar-button"
