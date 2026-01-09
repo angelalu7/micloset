@@ -1,4 +1,4 @@
-# Micloset V3
+# MiCloset
 
 A React + Vite frontend application with an Express backend for managing a digital wardrobe/closet.
 
